@@ -20,7 +20,11 @@ public class Trip {
 
     }
 
-    public String saveConvertedStartTime(String convertedTime) {
+    public String saveConvertedTime(boolean timeEnd, String convertedTime) {
+        if(timeEnd){
+            endTime = convertedTime;
+            return endTime;
+        }
         startTime = convertedTime;
         return startTime;
     }

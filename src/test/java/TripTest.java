@@ -11,11 +11,12 @@ public class TripTest {
     }
 
     @Test
-    public void parseStartTime(){
+    public void parseTime(){
         Driver dan = new Driver("Dan");
         Trip newTrip = new Trip( dan, "07:15", "07:45", 17.3);
         String convertedTime = newTrip.removeColon(newTrip.startTime);
-        newTrip.saveConvertedStartTime(convertedTime);
+        boolean timeEnd = false;
+        newTrip.saveConvertedTime(timeEnd, convertedTime);
         assertFalse(newTrip.startTime.contains(":"));
     }
 }
