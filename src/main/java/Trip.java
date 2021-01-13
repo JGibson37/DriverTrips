@@ -31,4 +31,8 @@ public class Trip {
         double speed = (milesDriven/timeTravelled)*60;
         return (int) Math.round(speed);
     }
+
+    public int roundMilesDriven(double miles){
+        return (int) Math.round(miles);
+    }
 }

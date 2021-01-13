@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TripTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-13T19:21:59" hostname="JASONPC" time="0.002">
+<testsuite name="TripTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-01-13T19:33:55" hostname="JASONPC" time="0.004">
   <properties/>
-  <testcase name="shouldCalculateSpeed" classname="TripTest" time="0.002"/>
+  <testcase name="parseTime" classname="TripTest" time="0.003"/>
+  <testcase name="shouldRoundMiles" classname="TripTest" time="0.0"/>
+  <testcase name="shouldMakeTimeInt" classname="TripTest" time="0.0"/>
+  <testcase name="createTrip" classname="TripTest" time="0.0"/>
+  <testcase name="shouldCalculateSpeed" classname="TripTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

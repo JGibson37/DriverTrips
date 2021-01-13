@@ -35,5 +35,11 @@ public class TripTest {
         assertTrue(newTrip.calculateSpeed(newTrip.startTime, newTrip.endTime) == 35);
     }
 
+    @Test
+    public void shouldRoundMiles(){
+        Driver dan = new Driver("Dan");
+        Trip newTrip = new Trip( dan, "07:15", "07:45", 17.3);
+        assertTrue(newTrip.roundMilesDriven(newTrip.milesDriven)== 17);
+    }
 
 }
