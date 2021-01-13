@@ -17,15 +17,18 @@ public class Trip {
         String firstHalf = time.substring(0, colonLocation);
         String secondHalf = time.substring(colonLocation + 1);
         return time = firstHalf + secondHalf;
-
     }
 
-    public String saveConvertedTime(boolean timeEnd, String convertedTime) {
-        if(timeEnd){
-            endTime = convertedTime;
-            return endTime;
-        }
-        startTime = convertedTime;
-        return startTime;
+    public int makeTimeInt (String time){
+        time = removeColon(time);
+        return Integer.parseInt(time);
+    }
+
+    public int calculateSpeed(String startTime, String endTime){
+        int startInt = makeTimeInt(startTime);
+        int endInt = makeTimeInt(endTime);
+        int timeTravelled = endInt - startInt;
+        double speed = (milesDriven/timeTravelled)*60;
+        return (int) Math.round(speed);
     }
 }
