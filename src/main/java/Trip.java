@@ -1,38 +1,27 @@
+import java.util.ArrayList;
+
 public class Trip {
 
-    Driver driver;
-    String startTime;
-    String endTime;
-    double milesDriven;
 
-    public Trip(Driver driver, String startTime, String endTime, double milesDriven) {
-        this.driver = driver;
+    protected String startTime;
+    protected String endTime;
+    protected double milesDriven;
+
+    public Trip(String startTime, String endTime, double milesDriven) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.milesDriven = milesDriven;
     }
 
-    public String removeColon(String time){
-        int colonLocation = time.indexOf(":");
-        String firstHalf = time.substring(0, colonLocation);
-        String secondHalf = time.substring(colonLocation + 1);
-        return time = firstHalf + secondHalf;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public int makeTimeInt (String time){
-        time = removeColon(time);
-        return Integer.parseInt(time);
+    public String getEndTime() {
+        return endTime;
     }
 
-    public int calculateSpeed(String startTime, String endTime){
-        int startInt = makeTimeInt(startTime);
-        int endInt = makeTimeInt(endTime);
-        int timeTravelled = endInt - startInt;
-        double speed = (milesDriven/timeTravelled)*60;
-        return (int) Math.round(speed);
-    }
-
-    public int roundMilesDriven(double miles){
-        return (int) Math.round(miles);
+    public double getMilesDriven() {
+        return milesDriven;
     }
 }
