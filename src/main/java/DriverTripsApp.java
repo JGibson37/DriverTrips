@@ -15,7 +15,7 @@ public class DriverTripsApp {
                 String command = contentArray[0];
                 if (command.equals("Driver")){
                     String name = contentArray[1];
-                    Driver newDriver = new Driver(name, tripList);
+                    Driver newDriver = new Driver(name);
                     System.out.println("New Driver | " + newDriver.getName());
                     System.out.println();
                 }
@@ -25,7 +25,7 @@ public class DriverTripsApp {
                     String endTime = contentArray[3];
                     double milesDriven = Double.parseDouble(contentArray[4]);
                     Trip trip = new Trip(startTime, endTime, milesDriven);
-                    tripManager.saveTrip(trip);
+
 
                     System.out.println(command + "-" + name + "-" + startTime + "-" + endTime+ "-" + milesDriven);
                     System.out.println();

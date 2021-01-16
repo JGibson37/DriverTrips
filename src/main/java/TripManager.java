@@ -1,22 +1,27 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TripManager {
+    protected HashMap<Driver, ArrayList<Trip>> driverTrips = new HashMap<>();
 
-    protected ArrayList<Trip> tripList = new ArrayList<>();
-
-    public void saveTrip(Trip trip) {
-        tripList.add(trip);
+    public void saveTrip(Driver name, Trip trip) {
+        driverTrips.get(name).add(trip);
     }
 
-    public ArrayList<Trip> getTripList() {
-        return tripList;
+//    public ArrayList<Trip> getTripList() {
+//        return tripList;
+//    }
+
+    public Map<Driver, ArrayList<Trip>> getDriverTrips() {
+        return driverTrips;
     }
 
     public String removeColon(String time){
         int colonLocation = time.indexOf(":");
         String firstHalf = time.substring(0, colonLocation);
         String secondHalf = time.substring(colonLocation + 1);
-        return time = firstHalf + secondHalf;
+        return firstHalf + secondHalf;
     }
 
     public int makeTimeInt (String time){
@@ -34,5 +39,13 @@ public class TripManager {
 
     public int roundMilesDriven(double miles){
         return (int) Math.round(miles);
+    }
+
+    public void saveDriver(Driver name) {
+        driverTrips.put(name, new ArrayList<Trip>());
+    }
+
+    public void getDriver(Driver name) {
+        driverTrips.get(name);
     }
 }

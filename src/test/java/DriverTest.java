@@ -7,6 +7,6 @@ public class DriverTest {
     @Test
     public void shouldCreateNewDriver(){
         ArrayList<Trip> tripList = new ArrayList<>();
-        Driver driver = new Driver("Dan", tripList);
+        Driver driver = new Driver("Dan");
     }
 }

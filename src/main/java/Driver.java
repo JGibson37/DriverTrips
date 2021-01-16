@@ -4,7 +4,7 @@ public class Driver {
 
     protected String name;
 
-    public Driver(String name, ArrayList<Trip> tripList) {
+    public Driver(String name) {
         this.name = name;
 
     }
