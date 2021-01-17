@@ -35,7 +35,6 @@ public class TripManagerTest {
         Driver lauren = new Driver("Lauren");
         tripManager.saveDriver(lauren);
         assertTrue(tripManager.getAllDriverNames().contains("Dan"));
-
     }
 
     @Test
