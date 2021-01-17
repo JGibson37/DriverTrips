@@ -13,19 +13,67 @@ public class TripManagerTest {
         tripManager.saveDriver(dan);
         assertTrue(tripManager.driverTrips.containsKey(dan));
     }
-    
+    @Test
+    public void shouldReturnAllDrivers(){
+        TripManager tripManager = new TripManager();
+        Driver dan = new Driver("Dan");
+        tripManager.saveDriver(dan);
+        Driver kumi = new Driver("Kumi");
+        tripManager.saveDriver(kumi);
+        Driver lauren = new Driver("Lauren");
+        tripManager.saveDriver(lauren);
+        assertTrue(tripManager.getAllDrivers().contains(dan));
+    }
+
+    @Test
+    public void shouldReturnAllDriverNames(){
+        TripManager tripManager = new TripManager();
+        Driver dan = new Driver("Dan");
+        tripManager.saveDriver(dan);
+        Driver kumi = new Driver("Kumi");
+        tripManager.saveDriver(kumi);
+        Driver lauren = new Driver("Lauren");
+        tripManager.saveDriver(lauren);
+        assertTrue(tripManager.getAllDriverNames().contains("Dan"));
+
+    }
+
+    @Test
+    public void shouldGetDriverByName(){
+        TripManager tripManager = new TripManager();
+        Driver dan = new Driver("Dan");
+        tripManager.saveDriver(dan);
+        assertEquals(dan, tripManager.getDriverByName("Dan"));
+    }
+
     @Test
     public void shouldSaveTrip() {
         TripManager tripManager = new TripManager();
         Driver dan = new Driver("Dan");
         tripManager.saveDriver(dan);
         Trip newTrip = new Trip("07:15", "07:45", 17.3);
-        Trip newTrip2 = new Trip("06:12", "06:32", 21.8);
         tripManager.saveTrip(dan,newTrip);
+        Trip newTrip2 = new Trip("06:12", "06:32", 21.8);
         tripManager.saveTrip(dan,newTrip2);
-        Map<Driver, ArrayList<Trip>> dansTrips = tripManager.getDriverTrips();
-        assertFalse(dansTrips.isEmpty());
+        Map<Driver, ArrayList<Trip>> driverTrips = tripManager.getAllDriverTrips();
+        System.out.println(tripManager.getAllDriverTrips());
+        assertFalse(driverTrips.isEmpty());
     }
+
+    @Test
+    public void getSpecificDriverTrips(){
+        TripManager tripManager = new TripManager();
+        Driver dan = new Driver("Dan");
+        tripManager.saveDriver(dan);
+        Trip newTrip = new Trip("07:15", "07:45", 17.3);
+        tripManager.saveTrip(dan,newTrip);
+        Driver kumi = new Driver("Dan");
+        tripManager.saveDriver(kumi);
+        Trip newTrip2 = new Trip("06:12", "06:32", 21.8);
+        tripManager.saveTrip(kumi,newTrip2);
+        assertTrue(tripManager.getSpecificDriverTrips(kumi).contains(newTrip2));
+    }
+
     @Test
     public void shouldParseTime(){
         TripManager tripManager = new TripManager();

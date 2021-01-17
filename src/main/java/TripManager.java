@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TripManager {
     protected HashMap<Driver, ArrayList<Trip>> driverTrips = new HashMap<>();
@@ -9,11 +7,7 @@ public class TripManager {
         driverTrips.get(name).add(trip);
     }
 
-//    public ArrayList<Trip> getTripList() {
-//        return tripList;
-//    }
-
-    public Map<Driver, ArrayList<Trip>> getDriverTrips() {
+    public Map<Driver, ArrayList<Trip>> getAllDriverTrips() {
         return driverTrips;
     }
 
@@ -47,5 +41,31 @@ public class TripManager {
 
     public void getDriver(Driver name) {
         driverTrips.get(name);
+    }
+
+    public ArrayList<Trip> getSpecificDriverTrips(Driver name) {
+        return driverTrips.get(name);
+    }
+
+    public Set<Driver> getAllDrivers() {
+        return driverTrips.keySet();
+    }
+
+    public ArrayList<String> getAllDriverNames() {
+        ArrayList<String> driverNames = new ArrayList<>();
+        for(Driver driver : driverTrips.keySet()){
+            driverNames.add(driver.getName());
+        }
+        return driverNames;
+    }
+
+    public Driver getDriverByName(String driverName) {
+        Driver driverToReturn = null;
+        for(Driver driver : driverTrips.keySet()){
+            if(driver.getName().equals(driverName)){
+                driverToReturn = driver;
+            }
+        }
+        return driverToReturn;
     }
 }

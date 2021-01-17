@@ -1,12 +1,13 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 
 public class DriverTest {
 
     @Test
     public void shouldCreateNewDriver(){
-        ArrayList<Trip> tripList = new ArrayList<>();
         Driver driver = new Driver("Dan");
+        assertEquals("Dan", driver.getName());
+
     }
 }
