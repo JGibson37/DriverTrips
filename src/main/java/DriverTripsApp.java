@@ -29,7 +29,6 @@ public class DriverTripsApp {
                         if(driverName.equals(driver.getName())){
                             Driver driverToAddTrip = tripManager.getDriverByName(driverName);
                             tripManager.saveTrip(driverToAddTrip, newTrip);
-                            System.out.println("Added a Trip");
                         }
                     }
                 }
