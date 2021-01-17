@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DriverTripsApp {
     public static void main(String[] args) {
@@ -14,9 +16,7 @@ public class DriverTripsApp {
                 String command = contentArray[0];
                 Driver driver = new Driver(contentArray[1]);
                 if (command.equals("Driver")){
-                    if(tripManager.getAllDriverNames().contains(driver.getName())) {
-                        System.out.println("Driver already exists");
-                    }else{
+                    if(!tripManager.getAllDriverNames().contains(driver.getName())) {
                         tripManager.saveDriver(driver);
                     }
                 }
@@ -35,10 +35,12 @@ public class DriverTripsApp {
                 }
             }
             br.close();
+            ArrayList<DriverSummary> driverSummaries = new ArrayList<>();
             for (Driver drv: tripManager.getAllDrivers()) {
                 ArrayList<Trip> driversTrips = tripManager.getSpecificDriverTrips(drv);
                 if (driversTrips.isEmpty()) {
-                    System.out.println(drv.getName() + ": 0 miles");
+                    DriverSummary driverSummary = new DriverSummary(drv, 0, 0.0);
+                    driverSummaries.add(driverSummary);
                 }else{
                     int totalMiles = 0;
                     int totalTime = 0;
@@ -53,9 +55,14 @@ public class DriverTripsApp {
                     }
                     double averageSpeed = ((double)totalMiles / totalTime);
                     averageSpeed = Math.round(averageSpeed * 60);
-
-                    System.out.println(drv.getName() + ": " + totalMiles + " miles @ " + averageSpeed + " mph");
+                    DriverSummary summary = new DriverSummary(drv, totalMiles, averageSpeed);
+                    driverSummaries.add(summary);
                 }
+            }
+            Collections.sort(driverSummaries);
+            Collections.reverse(driverSummaries);
+            for (DriverSummary summary : driverSummaries){
+                System.out.println(summary.getDriver().getName() +": " + summary.getTotalMiles() + " miles @ " + summary.getAverageSpeed() + " mph");
             }
         } catch (Exception e) {
             System.out.println("An error has occurred");
