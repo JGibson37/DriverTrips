@@ -9,8 +9,7 @@ public class DriverSummary implements Comparable<DriverSummary> {
         this.totalMiles = totalMiles;
         this.averageSpeed = averageSpeed;
     }
-
-
+    
     @Override
     public int compareTo(DriverSummary o) {
         return Integer.compare(totalMiles, o.totalMiles);
