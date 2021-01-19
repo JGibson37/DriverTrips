@@ -1,9 +1,9 @@
 # DriverTrips
-How to run the program:
+<b>How to run the program:</b>
 
 Simply copy and paste a text file named 'input.txt' into the src/main/resources folder. From there, you should only need to compile and run the program from inside your IDE.
 
-Steps for completing the application:
+<b>Steps for completing the application:</b>
 
 1. I began the project by writing down what I knew I needed to know from the prompt.
     - This included some psuedo coding object structure.
@@ -17,6 +17,9 @@ Steps for completing the application:
 8. Once I believed I was finished, I re-read my prompt and evaluated my code to ensure it suited all the requests.
 9. Finally as a last step, I implemented some refactoring to enhance my code readability.
 
-Other learnings included:
+<b>Other learnings included:</b>
 
 Throughout the process I would realize I did not have a certain functionality required from my objects, so I would stop working on the app, implement testing and code for my desired functionality, and then return to the App to continue working on it. This became a cycle until I finally had all the functionality needed to complete the App according to the prompt.
+
+<b>Notes on requirements:</b>
+I chose to go to this level of depth based on other coding challenges I have accomplished.
