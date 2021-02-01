@@ -36,6 +36,9 @@ public class DriverTripsApp {
             }
             if(command != null && command.equals("Trip")){
                 if(contentArray.length >= 5){
+                    if(!tripManager.getAllDriverNames().contains(driver.getName())) {
+                        tripManager.saveDriver(driver);
+                    }
                     String startTime = contentArray[2];
                     String endTime = contentArray[3];
                     double milesDriven = Double.parseDouble(contentArray[4]);
@@ -57,7 +60,7 @@ public class DriverTripsApp {
         Collections.sort(driverSummaries);
         Collections.reverse(driverSummaries);
         for (DriverSummary summary : driverSummaries){
-            System.out.println(summary.getDriver().getName() +": " + summary.getTotalMiles() + " miles @ " + summary.getAverageSpeed() + " mph");
+            System.out.println(summary.getDriver().getName() +": " + summary.getTotalMiles() + " miles @ " + summary.getAverageSpeed() + " mph over " + summary.getNumberOfTrips() +" Trips");
         }
     }
 
@@ -67,11 +70,12 @@ public class DriverTripsApp {
         for (Driver drv: tripManager.getAllDrivers()) {
             ArrayList<Trip> driversTrips = tripManager.getSpecificDriverTrips(drv);
             if (driversTrips.isEmpty()) {
-                DriverSummary driverSummary = new DriverSummary(drv, 0, 0.0);
+                DriverSummary driverSummary = new DriverSummary(drv, 0, 0.0, 0);
                 driverSummaries.add(driverSummary);
             }else{
                 int totalMiles = 0;
                 int totalTime = 0;
+                int numberOfTrips = 0;
                 for (Trip tripToCalculate : driversTrips) {
                     String startTime = tripToCalculate.getStartTime();
                     int startTimeInt = tripManager.makeTimeInt(startTime);
@@ -80,14 +84,15 @@ public class DriverTripsApp {
                     double milesDriven = tripToCalculate.getMilesDriven();
                     totalMiles = totalMiles + tripManager.roundMilesDriven(milesDriven);
                     totalTime = totalTime + (endTimeInt - startTimeInt);
+                    numberOfTrips++;
                 }
                 double averageSpeed = ((double)totalMiles / totalTime);
                 averageSpeed = Math.round(averageSpeed * 60);
                 DriverSummary summary;
                 if (averageSpeed >= 5 && averageSpeed <=100){
-                    summary = new DriverSummary(drv, totalMiles, averageSpeed);
+                    summary = new DriverSummary(drv, totalMiles, averageSpeed, numberOfTrips);
                 }else{
-                    summary = new DriverSummary(drv, 0, 0);
+                    summary = new DriverSummary(drv, 0, 0, 0);
                 }
                 driverSummaries.add(summary);
             }
