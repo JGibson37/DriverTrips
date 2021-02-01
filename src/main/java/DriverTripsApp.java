@@ -23,22 +23,28 @@ public class DriverTripsApp {
 
         while((s = br.readLine()) != null){
             String[] contentArray = s.split(" ");
-            String command = contentArray[0];
-            Driver driver = new Driver(contentArray[1]);
-            if (command.equals("Driver")){
-                if(!tripManager.getAllDriverNames().contains(driver.getName())) {
-                    tripManager.saveDriver(driver);
+            String command = null;
+            Driver driver = null;
+            if(contentArray.length >= 2){
+                command = contentArray[0];
+                driver = new Driver(contentArray[1]);
+                if (command.equals("Driver")){
+                    if(!tripManager.getAllDriverNames().contains(driver.getName())) {
+                        tripManager.saveDriver(driver);
+                    }
                 }
             }
-            if(command.equals("Trip")){
-                String startTime = contentArray[2];
-                String endTime = contentArray[3];
-                double milesDriven = Double.parseDouble(contentArray[4]);
-                Trip newTrip = new Trip(startTime, endTime, milesDriven);
-                for(String driverName : tripManager.getAllDriverNames()){
-                    if(driverName.equals(driver.getName())){
-                        Driver driverToAddTrip = tripManager.getDriverByName(driverName);
-                        tripManager.saveTrip(driverToAddTrip, newTrip);
+            if(command != null && command.equals("Trip")){
+                if(contentArray.length >= 5){
+                    String startTime = contentArray[2];
+                    String endTime = contentArray[3];
+                    double milesDriven = Double.parseDouble(contentArray[4]);
+                    Trip newTrip = new Trip(startTime, endTime, milesDriven);
+                    for(String driverName : tripManager.getAllDriverNames()){
+                        if(driverName.equals(driver.getName())){
+                            Driver driverToAddTrip = tripManager.getDriverByName(driverName);
+                            tripManager.saveTrip(driverToAddTrip, newTrip);
+                        }
                     }
                 }
             }
@@ -77,13 +83,13 @@ public class DriverTripsApp {
                 }
                 double averageSpeed = ((double)totalMiles / totalTime);
                 averageSpeed = Math.round(averageSpeed * 60);
+                DriverSummary summary;
                 if (averageSpeed >= 5 && averageSpeed <=100){
-                    DriverSummary summary = new DriverSummary(drv, totalMiles, averageSpeed);
-                    driverSummaries.add(summary);
+                    summary = new DriverSummary(drv, totalMiles, averageSpeed);
                 }else{
-                    DriverSummary summary = new DriverSummary(drv, 0, 0);
-                    driverSummaries.add(summary);
+                    summary = new DriverSummary(drv, 0, 0);
                 }
+                driverSummaries.add(summary);
             }
         }
         return driverSummaries;
